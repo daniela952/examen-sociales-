@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las 6 Regiones de Colombia – 4to Grado</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --caribe:   #00a8cc;
+  --insular:  #7c4dff;
+  --pacifico: #00897b;
+  --andina:   #e53935;
+  --orinoquia:#f57c00;
+  --amazonica:#2e7d32;
+  --bg: #f4f8f0;
+  --dark: #1b2a1e;
+  --soft: #e8f0e9;
+  --line: #c8d8c9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Quicksand', sans-serif; background: var(--bg); color: var(--dark); }
+
+/* HEADER */
+.header {
+  position: relative;
+  background: var(--dark);
+  padding: 50px 20px 56px;
+  text-align: center;
+  overflow: hidden;
+}
+.header-map {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 12px);
+}
+.flag-stripe {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ffd700 33%, #003087 33%, #003087 66%, #ce1126 66%);
+}
+.header-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #ffd700; margin-bottom: 12px;
+  position: relative;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 900; color: #fff; line-height: 1.15;
+  position: relative;
+}
+.header h1 em { color: #ffd700; font-style: normal; }
+.header-sub { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 8px; position: relative; }
+.region-dots {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px; margin-top: 20px; position: relative;
+}
+.rdot {
+  padding: 5px 14px; border-radius: 30px;
+  font-size: 0.75rem; font-weight: 700;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+}
+
+/* WAVE */
+.wave { line-height: 0; background: var(--dark); }
+.wave svg { display: block; }
+
+/* WRAP */
+.wrap { max-width: 840px; margin: 0 auto; padding: 0 18px 60px; }
+
+/* SECTION LABEL */
+.sec-label {
+  display: flex; align-items: center; gap: 12px; margin: 44px 0 22px;
+}
+.sec-label h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 900; white-space: nowrap;
+}
+.sec-label .deco { flex: 1; height: 2px; background: linear-gradient(90deg, var(--dark), transparent); }
+.sec-label .tag {
+  background: var(--dark); color: #ffd700;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+}
+
+/* REGION CARD */
+.reg-card {
+  border-radius: 20px; margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border: 2px solid transparent;
+}
+.reg-head {
+  padding: 18px 22px 16px;
+  display: flex; align-items: center; gap: 14px;
+  color: white;
+}
+.reg-icon { font-size: 2.2rem; flex-shrink: 0; }
+.reg-head h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+}
+.reg-head p { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
+.reg-body {
+  background: white; padding: 18px 22px;
+  font-size: 0.9rem; line-height: 1.75; color: #2a3a2c;
+}
+.reg-body p { margin-bottom: 8px; }
+.reg-body p:last-child { margin-bottom: 0; }
+
+.info-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px; margin-top: 12px;
+}
+.info-chip {
+  background: var(--soft); border-radius: 10px;
+  padding: 8px 12px; font-size: 0.8rem; font-weight: 600;
+}
+.info-chip span { display: block; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 2px; }
+
+/* colores de región */
+.c-caribe   { background: var(--caribe); border-color: var(--caribe); }
+.c-insular  { background: var(--insular); border-color: var(--insular); }
+.c-pacifico { background: var(--pacifico); border-color: var(--pacifico); }
+.c-andina   { background: var(--andina); border-color: var(--andina); }
+.c-orinoquia{ background: var(--orinoquia); border-color: var(--orinoquia); }
+.c-amazonica{ background: var(--amazonica); border-color: var(--amazonica); }
+
+/* DIVIDER */
+.divider {
+  text-align: center; margin: 50px 0 0; position: relative;
+}
+.divider::before {
+  content: ''; position: absolute; top: 50%; left: 0; right: 0;
+  height: 1.5px; background: var(--line);
+}
+.divider span {
+  background: var(--bg); padding: 0 20px; position: relative;
+  font-family: 'Playfair Display', serif; font-size: 1rem; color: #555;
+}
+
+/* EXAMEN */
+.exam-banner {
+  background: linear-gradient(135deg, var(--dark), #2e4a32);
+  border-radius: 18px; padding: 24px 28px; margin: 28px 0 24px;
+  display: flex; align-items: center; gap: 16px;
+  box-shadow: 0 8px 28px rgba(27,42,30,0.35);
+}
+.exam-banner-icon { font-size: 2.8rem; }
+.exam-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 900; color: #fff;
+}
+.exam-banner p { color: rgba(255,255,255,0.7); font-size: 0.87rem; margin-top: 3px; }
+
+/* datos */
+.datos-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  background: white; border-radius: 16px; padding: 20px 22px;
+  margin-bottom: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1.5px solid var(--line);
+}
+.dato label {
+  display: block; font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 4px;
+}
+.dato input {
+  border: none; border-bottom: 2px solid var(--line); width: 100%;
+  padding: 4px 0; font-family: 'Quicksand', sans-serif; font-size: 0.93rem;
+  background: transparent; outline: none; color: var(--dark); transition: border-color 0.2s;
+}
+.dato input:focus { border-color: var(--amazonica); }
+
+/* parte titulo */
+.part-title {
+  font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700;
+  color: white; padding: 8px 18px; border-radius: 30px;
+  display: inline-block; margin: 28px 0 14px; letter-spacing: 0.5px;
+}
+
+/* pregunta */
+.q-block {
+  background: white; border-radius: 16px; padding: 20px 22px;
+  margin-bottom: 15px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1.5px solid var(--line); transition: box-shadow 0.2s;
+}
+.q-block:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+.q-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.q-num {
+  width: 30px; height: 30px; border-radius: 8px; display: flex;
+  align-items: center; justify-content: center; font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 0.9rem; color: white; flex-shrink: 0; margin-top: 1px;
+}
+.q-text { font-size: 0.92rem; font-weight: 600; line-height: 1.5; flex: 1; }
+.q-type {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.qt-m { background: #fce4ec; color: #b71c1c; }
+.qt-v { background: #e0f2f1; color: #004d40; }
+.qt-c { background: #fff8e1; color: #e65100; }
+.qt-r { background: #e8eaf6; color: #283593; }
+.qt-e { background: #f3e5f5; color: #6a1b9a; }
+
+/* opciones */
+.options { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  border: 1.5px solid var(--line); border-radius: 10px;
+  cursor: pointer; font-size: 0.88rem; transition: all 0.15s;
+}
+.opt:hover { border-color: var(--amazonica); background: #f0faf0; }
+.opt.sel { border-color: var(--amazonica); background: #e8f5e9; }
+.opt input[type="radio"] { accent-color: var(--amazonica); width: 15px; height: 15px; }
+
+/* V/F */
+.vf-row { display: flex; gap: 10px; }
+.vf-btn {
+  flex: 1; padding: 11px; border-radius: 10px; border: 1.5px solid var(--line);
+  background: white; font-family: 'Quicksand', sans-serif; font-weight: 700;
+  font-size: 0.9rem; cursor: pointer; transition: all 0.15s;
+}
+.vf-btn.v:hover, .vf-btn.v.on { border-color: var(--amazonica); background: #e8f5e9; color: var(--amazonica); }
+.vf-btn.f:hover, .vf-btn.f.on { border-color: #c62828; background: #ffebee; color: #c62828; }
+
+/* completar */
+.fill-line {
+  border: none; border-bottom: 2px dashed var(--line); padding: 2px 6px;
+  font-family: 'Quicksand', sans-serif; font-size: 0.9rem; font-weight: 700;
+  color: var(--amazonica); background: transparent; outline: none; width: 170px;
+  transition: border-color 0.2s;
+}
+.fill-line:focus { border-color: var(--amazonica); }
+.fill-text { line-height: 2.5; font-size: 0.91rem; }
+
+/* relacionar */
+.rel-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rel-col { display: flex; flex-direction: column; gap: 8px; }
+.rel-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 12px; border: 1.5px solid var(--line);
+  border-radius: 10px; font-size: 0.87rem;
+}
+.rel-item.left { font-weight: 700; }
+.rel-item.right { color: #4a5a4c; }
+.rel-input {
+  width: 38px; text-align: center; border: 1.5px solid var(--line);
+  border-radius: 8px; padding: 4px; font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 0.88rem; color: var(--dark); outline: none;
+  transition: border-color 0.2s; flex-shrink: 0;
+}
+.rel-input:focus { border-color: var(--amazonica); }
+.rel-letters {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 6px; color: white;
+  font-weight: 700; font-size: 0.78rem; flex-shrink: 0;
+}
+
+/* mapa para colorear texto */
+.mapa-instruccion {
+  background: var(--soft); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 14px; font-size: 0.88rem; line-height: 1.6;
+  border-left: 4px solid var(--amazonica);
+}
+.region-lista {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px; margin-top: 10px;
+}
+.reg-item-check {
+  display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+  border: 1.5px solid var(--line); border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+  background: white;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.answer-box {
+  width: 100%; min-height: 75px; border: 1.5px solid var(--line); border-radius: 10px;
+  padding: 10px 14px; font-family: 'Quicksand', sans-serif; font-size: 0.9rem;
+  resize: vertical; outline: none; color: var(--dark); background: #fafff9;
+  transition: border-color 0.2s;
+}
+.answer-box:focus { border-color: var(--amazonica); }
+
+/* submit */
+.btn-submit {
+  display: block; width: 100%; margin-top: 14px; padding: 16px;
+  background: linear-gradient(135deg, var(--dark), #2e4a32);
+  color: #ffd700; font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 900; border: none; border-radius: 14px;
+  cursor: pointer; letter-spacing: 1px;
+  box-shadow: 0 6px 20px rgba(27,42,30,0.35); transition: all 0.2s;
+}
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(27,42,30,0.45); }
+
+/* modal */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(27,42,30,0.65); z-index: 200;
+  align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.show { display: flex; }
+.modal {
+  background: white; border-radius: 22px; padding: 38px 30px;
+  max-width: 400px; width: 100%; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: pop 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-icon { font-size: 4rem; margin-bottom: 14px; }
+.modal h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 900; margin-bottom: 8px; }
+.modal p { color: #555; font-size: 0.93rem; line-height: 1.6; }
+.modal-score {
+  font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 900;
+  color: var(--amazonica); display: block; margin: 12px 0;
+}
+.btn-close {
+  margin-top: 18px; padding: 12px 28px;
+  background: var(--dark); color: #ffd700; border: none; border-radius: 12px;
+  font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .datos-grid { grid-template-columns: 1fr; }
+  .rel-wrap { grid-template-columns: 1fr; }
+  .exam-banner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-map"></div>
+  <div class="flag-stripe"></div>
+  <p class="header-eyebrow">🇨🇴 Ciencias Sociales · 4to Grado · Segundo Período</p>
+  <h1>Las <em>6 Regiones</em><br>de Colombia</h1>
+  <p class="header-sub">Explicación completa + Examen evaluativo</p>
+  <div class="region-dots">
+    <span class="rdot" style="border-color:#00a8cc; color:#00a8cc;">🌊 Caribe</span>
+    <span class="rdot" style="border-color:#7c4dff; color:#7c4dff;">🏝️ Insular</span>
+    <span class="rdot" style="border-color:#00897b; color:#00897b;">🌿 Pacífico</span>
+    <span class="rdot" style="border-color:#e53935; color:#e53935;">⛰️ Andina</span>
+    <span class="rdot" style="border-color:#f57c00; color:#f57c00;">🌾 Orinoquía</span>
+    <span class="rdot" style="border-color:#2e7d32; color:#2e7d32;">🌳 Amazónica</span>
+  </div>
+</div>
+<div class="wave">
+  <svg viewBox="0 0 1200 55" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,28 C300,55 600,0 900,28 C1050,42 1150,14 1200,28 L1200,55 L0,55 Z" fill="#f4f8f0"/>
+  </svg>
+</div>
+
+<div class="wrap">
+
+<!-- ════════ EXPLICACIÓN ════════ -->
+<div class="sec-label">
+  <h2>🗺️ Conozcamos las Regiones</h2>
+  <div class="deco"></div>
+  <span class="tag">Explicación</span>
+</div>
+
+<!-- REGIÓN CARIBE -->
+<div class="reg-card" style="border-color:var(--caribe)">
+  <div class="reg-head c-caribe">
+    <span class="reg-icon">🌊</span>
+    <div>
+      <h3>Región Caribe</h3>
+      <p>Norte de Colombia · Costa Atlántica</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>Es la región ubicada al <strong>norte de Colombia</strong>, bañada por el Mar Caribe. Tiene extensas playas, ciénagas y la Sierra Nevada de Santa Marta, que es la montaña costera más alta del mundo.</p>
+    <p>Su clima es <strong>cálido y seco</strong>. Es famosa por su alegre música vallenata y el carnaval de Barranquilla.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Capital principal</span>Barranquilla</div>
+      <div class="info-chip"><span>Otros dptos.</span>Magdalena, Cesar, Córdoba, Sucre, Bolívar, La Guajira, Atlántico</div>
+      <div class="info-chip"><span>Clima</span>Cálido seco y húmedo</div>
+      <div class="info-chip"><span>Río principal</span>Río Magdalena</div>
+      <div class="info-chip"><span>Cultura</span>Vallenato, Carnaval</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIÓN INSULAR -->
+<div class="reg-card" style="border-color:var(--insular)">
+  <div class="reg-head c-insular">
+    <span class="reg-icon">🏝️</span>
+    <div>
+      <h3>Región Insular</h3>
+      <p>Islas en el Mar Caribe y Océano Pacífico</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>Es la región más pequeña de Colombia. Está formada por <strong>islas y archipiélagos</strong> que se encuentran en el Mar Caribe y el Océano Pacífico.</p>
+    <p>Las más conocidas son <strong>San Andrés, Providencia y Santa Catalina</strong> en el Caribe, y la Isla Gorgona en el Pacífico. Tienen hermosos arrecifes de coral y aguas cristalinas.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Isla principal</span>San Andrés</div>
+      <div class="info-chip"><span>Otras islas</span>Providencia, Santa Catalina, Gorgona, Malpelo</div>
+      <div class="info-chip"><span>Clima</span>Tropical húmedo</div>
+      <div class="info-chip"><span>Característica</span>Arrecifes de coral</div>
+      <div class="info-chip"><span>Idiomas</span>Español e inglés criollo</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIÓN PACÍFICO -->
+<div class="reg-card" style="border-color:var(--pacifico)">
+  <div class="reg-head c-pacifico">
+    <span class="reg-icon">🌿</span>
+    <div>
+      <h3>Región Pacífica</h3>
+      <p>Occidente de Colombia · Costa del Pacífico</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>Está ubicada al <strong>occidente</strong>, entre la cordillera Occidental y el Océano Pacífico. Es una de las regiones con <strong>mayor biodiversidad</strong> del mundo y una de las zonas más lluviosas del planeta.</p>
+    <p>Tiene selvas tropicales, manglares y grandes ríos. Su cultura es mayoritariamente <strong>afrocolombiana</strong>, con rica música de marimba y chirimía.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Ciudad principal</span>Buenaventura</div>
+      <div class="info-chip"><span>Departamentos</span>Chocó, Valle del Cauca, Cauca, Nariño</div>
+      <div class="info-chip"><span>Clima</span>Muy lluvioso y húmedo</div>
+      <div class="info-chip"><span>Puerto</span>Puerto de Buenaventura</div>
+      <div class="info-chip"><span>Cultura</span>Afrocolombiana</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIÓN ANDINA -->
+<div class="reg-card" style="border-color:var(--andina)">
+  <div class="reg-head c-andina">
+    <span class="reg-icon">⛰️</span>
+    <div>
+      <h3>Región Andina</h3>
+      <p>Centro de Colombia · Las tres cordilleras</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>Es la región <strong>más poblada de Colombia</strong>. La atraviesan las tres cordilleras de los Andes: Occidental, Central y Oriental. Allí se encuentra Bogotá, la capital del país.</p>
+    <p>Su clima es <strong>variado según la altitud</strong>: frío en las montañas, templado en los valles. Es la región con más ciudades importantes y recursos agrícolas como café, flores y papa.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Capital del país</span>Bogotá D.C.</div>
+      <div class="info-chip"><span>Otras ciudades</span>Medellín, Cali, Manizales, Pereira</div>
+      <div class="info-chip"><span>Clima</span>Frío, templado y cálido</div>
+      <div class="info-chip"><span>Producto</span>Café colombiano</div>
+      <div class="info-chip"><span>Característica</span>Más poblada</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIÓN ORINOQUÍA -->
+<div class="reg-card" style="border-color:var(--orinoquia)">
+  <div class="reg-head c-orinoquia">
+    <span class="reg-icon">🌾</span>
+    <div>
+      <h3>Región de la Orinoquía</h3>
+      <p>Oriente · Los llanos orientales</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>También llamada los <strong>Llanos Orientales</strong>, es una extensa llanura al oriente de Colombia. Está bañada por el río Orinoco y sus afluentes. Es famosa por su ganadería y la cultura llanera.</p>
+    <p>En esta región se celebran los famosos torneos de <strong>coleo</strong> y se escucha música llanera. El paisaje es de grandes praderas con pocos árboles.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Ciudad principal</span>Villavicencio</div>
+      <div class="info-chip"><span>Departamentos</span>Meta, Arauca, Casanare, Vichada</div>
+      <div class="info-chip"><span>Clima</span>Cálido, con lluvias estacionales</div>
+      <div class="info-chip"><span>Río</span>Orinoco, Meta</div>
+      <div class="info-chip"><span>Actividad</span>Ganadería y petróleo</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGIÓN AMAZÓNICA -->
+<div class="reg-card" style="border-color:var(--amazonica)">
+  <div class="reg-head c-amazonica">
+    <span class="reg-icon">🌳</span>
+    <div>
+      <h3>Región Amazónica</h3>
+      <p>Sur de Colombia · La gran selva</p>
+    </div>
+  </div>
+  <div class="reg-body">
+    <p>Es la región <strong>más grande de Colombia</strong> pero una de las menos pobladas. Forma parte de la gran selva amazónica, el bosque tropical más grande del mundo.</p>
+    <p>Tiene una enorme riqueza en biodiversidad: miles de especies de plantas, animales e insectos. Viven allí muchas <strong>comunidades indígenas</strong> que cuidan la selva.</p>
+    <div class="info-row">
+      <div class="info-chip"><span>Ciudad principal</span>Leticia</div>
+      <div class="info-chip"><span>Departamentos</span>Amazonas, Caquetá, Putumayo, Vaupés, Guainía</div>
+      <div class="info-chip"><span>Clima</span>Cálido y muy húmedo</div>
+      <div class="info-chip"><span>Río</span>Río Amazonas</div>
+      <div class="info-chip"><span>Característica</span>Más extensa, mayor biodiversidad</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="divider"><span>✦ EXAMEN ✦</span></div>
+
+<!-- ════════ EXAMEN ════════ -->
+<div class="exam-banner">
+  <span class="exam-banner-icon">📝</span>
+  <div>
+    <h2>Examen – Las 6 Regiones</h2>
+    <p>Lee bien cada pregunta. Recuerda todo lo que aprendiste.</p>
+  </div>
+</div>
+
+<div class="datos-grid">
+  <div class="dato"><label>Nombre completo</label><input type="text" placeholder="Tu nombre aquí"></div>
+  <div class="dato"><label>Fecha</label><input type="text" placeholder="dd / mm / aaaa"></div>
+  <div class="dato"><label>Grado y grupo</label><input type="text" placeholder="4to grado"></div>
+  <div class="dato"><label>Nota</label><input type="text" placeholder="___ / 10"></div>
+</div>
+
+<!-- PARTE 1 -->
+<div class="part-title" style="background:var(--caribe)">Parte 1 – Opción Múltiple</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--caribe)">1</div>
+    <span class="q-text">¿Cuál es la región de Colombia que está formada por islas en el Mar Caribe y el Océano Pacífico?</span>
+    <span class="q-type qt-m">Múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q1" value="a"> a) Región Caribe</label>
+    <label class="opt"><input type="radio" name="q1" value="b"> b) Región Pacífica</label>
+    <label class="opt"><input type="radio" name="q1" value="c"> c) Región Insular</label>
+    <label class="opt"><input type="radio" name="q1" value="d"> d) Región Andina</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--andina)">2</div>
+    <span class="q-text">¿En qué región se encuentra Bogotá, la capital de Colombia?</span>
+    <span class="q-type qt-m">Múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q2" value="a"> a) Región Amazónica</label>
+    <label class="opt"><input type="radio" name="q2" value="b"> b) Región Andina</label>
+    <label class="opt"><input type="radio" name="q2" value="c"> c) Región Caribe</label>
+    <label class="opt"><input type="radio" name="q2" value="d"> d) Región Orinoquía</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--amazonica)">3</div>
+    <span class="q-text">¿Cuál es la región más grande de Colombia pero una de las menos pobladas?</span>
+    <span class="q-type qt-m">Múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q3" value="a"> a) Región Andina</label>
+    <label class="opt"><input type="radio" name="q3" value="b"> b) Región Orinoquía</label>
+    <label class="opt"><input type="radio" name="q3" value="c"> c) Región Pacífica</label>
+    <label class="opt"><input type="radio" name="q3" value="d"> d) Región Amazónica</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--orinoquia)">4</div>
+    <span class="q-text">¿Con qué otro nombre se conoce a la Región de la Orinoquía?</span>
+    <span class="q-type qt-m">Múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q4" value="a"> a) Los Andes colombianos</label>
+    <label class="opt"><input type="radio" name="q4" value="b"> b) La selva tropical</label>
+    <label class="opt"><input type="radio" name="q4" value="c"> c) Los Llanos Orientales</label>
+    <label class="opt"><input type="radio" name="q4" value="d"> d) La Costa Atlántica</label>
+  </div>
+</div>
+
+<!-- PARTE 2 -->
+<div class="part-title" style="background:var(--pacifico)">Parte 2 – Verdadero o Falso</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--pacifico)">5</div>
+    <span class="q-text">La Región Caribe está bañada por el Mar Caribe y tiene playas en el norte de Colombia.</span>
+    <span class="q-type qt-v">V / F</span>
+  </div>
+  <div class="vf-row">
+    <button class="vf-btn v" onclick="selVF(this,'vf5','V')">✅ Verdadero</button>
+    <button class="vf-btn f" onclick="selVF(this,'vf5','F')">❌ Falso</button>
+  </div>
+  <input type="hidden" id="vf5" value="">
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--pacifico)">6</div>
+    <span class="q-text">La Región Andina es la menos poblada de Colombia.</span>
+    <span class="q-type qt-v">V / F</span>
+  </div>
+  <div class="vf-row">
+    <button class="vf-btn v" onclick="selVF(this,'vf6','V')">✅ Verdadero</button>
+    <button class="vf-btn f" onclick="selVF(this,'vf6','F')">❌ Falso</button>
+  </div>
+  <input type="hidden" id="vf6" value="">
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--pacifico)">7</div>
+    <span class="q-text">San Andrés y Providencia pertenecen a la Región Insular de Colombia.</span>
+    <span class="q-type qt-v">V / F</span>
+  </div>
+  <div class="vf-row">
+    <button class="vf-btn v" onclick="selVF(this,'vf7','V')">✅ Verdadero</button>
+    <button class="vf-btn f" onclick="selVF(this,'vf7','F')">❌ Falso</button>
+  </div>
+  <input type="hidden" id="vf7" value="">
+</div>
+
+<!-- PARTE 3 -->
+<div class="part-title" style="background:var(--orinoquia)">Parte 3 – Relaciona la Región con su Característica</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--orinoquia)">8</div>
+    <span class="q-text">Escribe la letra de la columna B que corresponde a cada región de la columna A.</span>
+    <span class="q-type qt-r">Relacionar</span>
+  </div>
+  <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:separate; border-spacing:0 6px; font-size:0.87rem;">
+      <thead>
+        <tr>
+          <td style="font-weight:700; color:var(--dark); padding:0 10px 10px; width:36px;"></td>
+          <td style="font-weight:800; color:var(--amazonica); padding:0 10px 10px;">Columna A – Región</td>
+          <td style="font-weight:700; padding:0 10px 10px; width:48px;"></td>
+          <td style="font-weight:800; color:var(--orinoquia); padding:0 10px 10px;">Columna B – Característica</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--caribe);">1.</td>
+          <td style="padding:4px 10px; font-weight:700;">🌊 Caribe</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">A. Su ciudad principal es Leticia y tiene selva amazónica.</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--insular);">2.</td>
+          <td style="padding:4px 10px; font-weight:700;">🏝️ Insular</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">B. Está formada por islas; San Andrés es la más conocida.</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--pacifico);">3.</td>
+          <td style="padding:4px 10px; font-weight:700;">🌿 Pacífica</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">C. Tiene el Carnaval de Barranquilla y música vallenata.</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--andina);">4.</td>
+          <td style="padding:4px 10px; font-weight:700;">⛰️ Andina</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">D. Es la región más lluviosa; predomina la cultura afrocolombiana.</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--orinoquia);">5.</td>
+          <td style="padding:4px 10px; font-weight:700;">🌾 Orinoquía</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">E. Es la región más poblada; aquí está Bogotá y el café.</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 6px; font-weight:800; color:var(--amazonica);">6.</td>
+          <td style="padding:4px 10px; font-weight:700;">🌳 Amazónica</td>
+          <td style="padding:4px 6px;"><input class="rel-input" maxlength="1" placeholder=""></td>
+          <td style="padding:4px 10px; color:#4a5a4c;">F. Son los Llanos Orientales; famosa por el coleo y la ganadería.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PARTE 4 -->
+<div class="part-title" style="background:var(--andina)">Parte 4 – Completa</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--andina)">9</div>
+    <span class="q-text">Completa cada oración con el nombre de la región correcta.</span>
+    <span class="q-type qt-c">Completar</span>
+  </div>
+  <div class="fill-text">
+    a) La región bañada por el Océano Pacífico y famosa por su gran biodiversidad es la Región <input class="fill-line" placeholder="__________">.<br>
+    b) La región donde viven muchas comunidades indígenas en medio de la selva más grande del mundo es la Región <input class="fill-line" placeholder="__________">.<br>
+    c) La ciudad de Barranquilla pertenece a la Región <input class="fill-line" placeholder="__________">.<br>
+    d) Los Llanos Orientales pertenecen a la Región de la <input class="fill-line" placeholder="__________">.
+  </div>
+</div>
+
+<!-- PARTE 5 -->
+<div class="part-title" style="background:var(--amazonica)">Parte 5 – Pregunta Abierta</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num" style="background:var(--amazonica)">10</div>
+    <span class="q-text">Escoge UNA región de Colombia que te guste y escribe: ¿dónde está ubicada?, ¿cuál es su clima? y ¿qué la hace especial?</span>
+    <span class="q-type qt-e">Escribir</span>
+  </div>
+  <textarea class="answer-box" placeholder="La región que escojo es... Está ubicada... Su clima es... Lo que la hace especial es..."></textarea>
+</div>
+
+<button class="btn-submit" onclick="verificar()">🗺️ Revisar mis Respuestas</button>
+
+</div><!-- /wrap -->
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-icon" id="m-icon">🏆</div>
+    <h2 id="m-title">¡Excelente!</h2>
+    <span class="modal-score" id="m-score">8/10</span>
+    <p id="m-msg"></p>
+    <button class="btn-close" onclick="document.getElementById('overlay').classList.remove('show')">¡Seguir aprendiendo! 🇨🇴</button>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.opt input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    document.querySelectorAll(`input[name="${this.name}"]`).forEach(x => x.closest('.opt').classList.remove('sel'));
+    this.closest('.opt').classList.add('sel');
+  });
+});
+function selVF(btn, id, val) {
+  btn.parentElement.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).value = val;
+}
+const ans = { q1:'c', q2:'b', q3:'d', q4:'c', vf5:'V', vf6:'F', vf7:'V' };
+function verificar() {
+  let ok = 0, total = 7;
+  ['q1','q2','q3','q4'].forEach(n => {
+    const s = document.querySelector(`input[name="${n}"]:checked`);
+    if (s && s.value === ans[n]) ok++;
+  });
+  ['vf5','vf6','vf7'].forEach(id => {
+    if (document.getElementById(id).value === ans[id]) ok++;
+  });
+  const pct = Math.round(ok/total*100);
+  let icon, title, msg;
+  if (pct >= 85) { icon='🏆'; title='¡Sobresaliente!'; msg=`Respondiste ${ok} de ${total} correctas (${pct}%). ¡Conoces muy bien las regiones de Colombia!`; }
+  else if (pct >= 57) { icon='😊'; title='¡Muy bien!'; msg=`Respondiste ${ok} de ${total} correctas (${pct}%). ¡Sigue repasando las regiones!`; }
+  else { icon='📚'; title='¡Sigue estudiando!'; msg=`Respondiste ${ok} de ${total} correctas (${pct}%). Vuelve a leer la explicación de cada región. ¡Tú puedes!`; }
+  document.getElementById('m-icon').textContent = icon;
+  document.getElementById('m-title').textContent = title;
+  document.getElementById('m-score').textContent = ok + '/' + total;
+  document.getElementById('m-msg').textContent = msg;
+  document.getElementById('overlay').classList.add('show');
+}
+</script>
+</body>
+</html>

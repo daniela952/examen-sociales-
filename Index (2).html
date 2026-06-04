@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castellano – 2do Período · 4to Grado</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --paper: #fdf8f0;
+  --cream: #f5ede0;
+  --red: #c0392b;
+  --gold: #d4a017;
+  --teal: #1a7a6e;
+  --blue: #1d5fa8;
+  --soft: #e8ddd0;
+  --line: #d0c4b0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--ink);
+  padding: 48px 24px 52px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(212,160,23,0.12);
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(26,122,110,0.15);
+}
+.header-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+}
+.header h1 span { color: var(--gold); }
+.header-sub {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.header-topics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.topic-pill {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  border-radius: 30px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ── LAYOUT ── */
+.wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 44px 0 20px;
+}
+.section-label .line-deco {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.section-label h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.section-label .pill {
+  background: var(--ink);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* ── TEMA CARDS ── */
+.tema-card {
+  background: white;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(26,26,46,0.08);
+  border: 1.5px solid var(--soft);
+}
+.tema-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px 14px;
+  border-bottom: 1.5px solid var(--soft);
+}
+.tema-num {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.tema-num.red { background: #fce8e6; color: var(--red); }
+.tema-num.teal { background: #e6f4f2; color: var(--teal); }
+.tema-num.blue { background: #e6eef8; color: var(--blue); }
+.tema-num.gold { background: #fdf4e0; color: var(--gold); }
+
+.tema-card-head h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.tema-card-body {
+  padding: 18px 22px;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #3a3a4a;
+}
+.tema-card-body p { margin-bottom: 10px; }
+.tema-card-body p:last-child { margin-bottom: 0; }
+
+.highlight-box {
+  background: var(--cream);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.88rem;
+}
+.highlight-box strong { color: var(--ink); }
+
+.examples-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ex-tag {
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.ex-tag span { color: var(--teal); font-weight: 700; }
+
+/* tabla sílabas */
+.sil-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+.sil-table th {
+  background: var(--ink);
+  color: var(--gold);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+}
+.sil-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--soft);
+}
+.sil-table tr:last-child td { border-bottom: none; }
+.sil-table tr:nth-child(even) td { background: #faf6f0; }
+
+/* ── SEPARADOR ── */
+.divider {
+  text-align: center;
+  margin: 50px 0 0;
+  position: relative;
+}
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--line);
+}
+.divider span {
+  background: var(--paper);
+  padding: 0 20px;
+  position: relative;
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+/* ── EXAMEN HEADER ── */
+.exam-banner {
+  background: linear-gradient(135deg, var(--red) 0%, #8b1a1a 100%);
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin: 28px 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 8px 28px rgba(192,57,43,0.3);
+}
+.exam-banner-icon { font-size: 2.8rem; }
+.exam-banner h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+}
+.exam-banner p { color: rgba(255,255,255,0.8); font-size: 0.88rem; margin-top: 3px; }
+
+/* datos */
+.datos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  background: white;
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  border: 1.5px solid var(--soft);
+}
+.dato label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 4px;
+}
+.dato input {
+  border: none;
+  border-bottom: 2px solid var(--line);
+  width: 100%;
+  padding: 4px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem;
+  background: transparent;
+  outline: none;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+.dato input:focus { border-color: var(--teal); }
+
+/* pregunta */
+.q-block {
+  background: white;
+  border-radius: 16px;
+  padding: 22px 22px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1.5px solid var(--soft);
+  transition: box-shadow 0.2s;
+}
+.q-block:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+.q-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.q-num {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 0.88rem;
+  color: white;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.bg-red { background: var(--red); }
+.bg-teal { background: var(--teal); }
+.bg-blue { background: var(--blue); }
+.bg-gold { background: var(--gold); }
+.bg-ink { background: var(--ink); }
+
+.q-text { font-size: 0.93rem; font-weight: 600; line-height: 1.5; flex: 1; }
+.q-type {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.qt-multi { background: #fce8e6; color: var(--red); }
+.qt-vf { background: #e6f4f2; color: var(--teal); }
+.qt-comp { background: #fdf4e0; color: #9a7000; }
+.qt-ord { background: #e6eef8; color: var(--blue); }
+.qt-esc { background: #f0e8f8; color: #6b2fa0; }
+
+/* opciones */
+.options { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--soft);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.15s;
+}
+.opt:hover { border-color: var(--teal); background: #f0faf9; }
+.opt.sel { border-color: var(--teal); background: #e6f4f2; }
+.opt input[type="radio"] { accent-color: var(--teal); width: 15px; height: 15px; }
+
+/* V/F */
+.vf-row { display: flex; gap: 10px; }
+.vf-btn {
+  flex: 1;
+  padding: 11px;
+  border-radius: 10px;
+  border: 1.5px solid var(--soft);
+  background: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.vf-btn:hover { transform: translateY(-1px); }
+.vf-btn.v:hover, .vf-btn.v.on { border-color: var(--teal); background: #e6f4f2; color: var(--teal); }
+.vf-btn.f:hover, .vf-btn.f.on { border-color: var(--red); background: #fce8e6; color: var(--red); }
+
+/* completar */
+.fill-line {
+  border: none;
+  border-bottom: 2px dashed var(--line);
+  padding: 2px 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--teal);
+  background: transparent;
+  outline: none;
+  width: 160px;
+  transition: border-color 0.2s;
+}
+.fill-line:focus { border-color: var(--teal); }
+.fill-text { line-height: 2.4; font-size: 0.92rem; }
+
+/* ordenar */
+.ord-list { display: flex; flex-direction: column; gap: 6px; }
+.ord-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--soft);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  background: white;
+}
+.ord-input {
+  width: 40px;
+  text-align: center;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 4px;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--blue);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ord-input:focus { border-color: var(--blue); }
+
+/* textarea */
+.answer-box {
+  width: 100%;
+  min-height: 85px;
+  border: 1.5px solid var(--soft);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  resize: vertical;
+  outline: none;
+  color: var(--ink);
+  background: #faf9f5;
+  transition: border-color 0.2s;
+}
+.answer-box:focus { border-color: var(--teal); }
+
+/* relacionar */
+.rel-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+.rel-table td { padding: 6px 10px; font-size: 0.88rem; }
+.rel-left { font-weight: 700; color: var(--blue); }
+.rel-right { color: #4a4a5a; }
+.rel-input {
+  width: 44px;
+  text-align: center;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 4px;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--blue);
+  outline: none;
+}
+.rel-input:focus { border-color: var(--blue); }
+
+/* parte titulo */
+.part-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 14px;
+  margin-top: 28px;
+  letter-spacing: 0.5px;
+}
+.pt-red { background: var(--red); }
+.pt-teal { background: var(--teal); }
+.pt-blue { background: var(--blue); }
+.pt-gold { background: var(--gold); }
+.pt-ink { background: var(--ink); }
+
+/* biografía form */
+.bio-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.bio-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 3px;
+}
+.bio-field input {
+  border: none;
+  border-bottom: 2px solid var(--line);
+  width: 100%;
+  padding: 4px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  background: transparent;
+  outline: none;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+.bio-field input:focus { border-color: var(--teal); }
+.bio-field.full { grid-column: 1 / -1; }
+
+/* submit */
+.btn-submit {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--gold);
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 20px rgba(26,26,46,0.3);
+  transition: all 0.2s;
+}
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,26,46,0.4); }
+
+/* modal */
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(26,26,46,0.65);
+  z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.overlay.show { display: flex; }
+.modal {
+  background: white;
+  border-radius: 22px;
+  padding: 38px 30px;
+  max-width: 400px; width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: pop 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-icon { font-size: 4rem; margin-bottom: 14px; }
+.modal h2 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 900; margin-bottom: 8px; }
+.modal p { color: #666; font-size: 0.93rem; line-height: 1.6; }
+.modal-score {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--teal);
+  display: block;
+  margin: 12px 0;
+}
+.btn-close {
+  margin-top: 18px;
+  padding: 12px 28px;
+  background: var(--ink);
+  color: var(--gold);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-close:hover { opacity: 0.85; }
+
+@media (max-width: 520px) {
+  .datos-grid, .bio-form { grid-template-columns: 1fr; }
+  .bio-field.full { grid-column: 1; }
+  .exam-banner { flex-direction: column; text-align: center; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-eyebrow">📖 Segundo Período · 4to Grado</p>
+  <h1>Castellano <span>&</span> Lenguaje</h1>
+  <p class="header-sub">Explicación de temas + Examen evaluativo</p>
+  <div class="header-topics">
+    <span class="topic-pill">Sílabas</span>
+    <span class="topic-pill">Clasificación silábica</span>
+    <span class="topic-pill">Orden alfabético</span>
+    <span class="topic-pill">Biografía</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════════ EXPLICACIÓN ══════════════ -->
+<div class="section-label">
+  <h2>📚 Repaso de Temas</h2>
+  <div class="line-deco"></div>
+  <span class="pill">Explicación</span>
+</div>
+
+<!-- TEMA 1: SÍLABA -->
+<div class="tema-card">
+  <div class="tema-card-head">
+    <div class="tema-num red">1</div>
+    <h3>La Sílaba y la Separación Silábica</h3>
+  </div>
+  <div class="tema-card-body">
+    <p>Una <strong>sílaba</strong> es cada uno de los golpes de voz que damos al pronunciar una palabra. Toda sílaba debe contener al menos una <strong>vocal</strong>.</p>
+    <div class="highlight-box">
+      <strong>¿Cómo separar sílabas?</strong><br>
+      Pronuncia la palabra despacio y fíjate dónde "cortas" el sonido. Cada corte marca una sílaba. Se usa el guion ( – ) para separar.
+    </div>
+    <div class="examples-row">
+      <div class="ex-tag">ca-sa <span>(2 sílabas)</span></div>
+      <div class="ex-tag">pa-lo-ma <span>(3 sílabas)</span></div>
+      <div class="ex-tag">ma-ri-po-sa <span>(4 sílabas)</span></div>
+      <div class="ex-tag">sol <span>(1 sílaba)</span></div>
+      <div class="ex-tag">te-lé-fo-no <span>(4 sílabas)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEMA 2: CLASIFICACIÓN -->
+<div class="tema-card">
+  <div class="tema-card-head">
+    <div class="tema-num teal">2</div>
+    <h3>Clasificación de las Sílabas</h3>
+  </div>
+  <div class="tema-card-body">
+    <p>Las palabras se clasifican según el <strong>número de sílabas</strong> que tienen:</p>
+    <table class="sil-table">
+      <thead>
+        <tr><th>Nombre</th><th># Sílabas</th><th>Ejemplos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Monosílaba</strong></td><td>1</td><td>sol, pan, luz, rey, flor</td></tr>
+        <tr><td><strong>Bisílaba</strong></td><td>2</td><td>ca-sa, ni-ño, pla-za</td></tr>
+        <tr><td><strong>Trisílaba</strong></td><td>3</td><td>ca-ba-llo, es-cue-la</td></tr>
+        <tr><td><strong>Polisílaba</strong></td><td>4 o más</td><td>ma-ri-po-sa, te-lé-fo-no</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box" style="margin-top:14px;">
+      También existen las palabras <strong>agudas</strong> (acento en la última sílaba), <strong>graves</strong> (acento en la penúltima) y <strong>esdrújulas</strong> (acento en la antepenúltima).
+    </div>
+  </div>
+</div>
+
+<!-- TEMA 3: ORDEN ALFABÉTICO -->
+<div class="tema-card">
+  <div class="tema-card-head">
+    <div class="tema-num blue">3</div>
+    <h3>Orden Alfabético</h3>
+  </div>
+  <div class="tema-card-body">
+    <p>El <strong>orden alfabético</strong> es el orden que siguen las letras en el abecedario. Se usa para organizar palabras en diccionarios, listas y directorios.</p>
+    <div class="highlight-box">
+      <strong>Abecedario:</strong> a – b – c – d – e – f – g – h – i – j – k – l – m – n – ñ – o – p – q – r – s – t – u – v – w – x – y – z
+    </div>
+    <p style="margin-top:10px;">Si dos palabras empiezan con la misma letra, se mira la <strong>segunda letra</strong>, y así sucesivamente.</p>
+    <div class="examples-row" style="margin-top:10px;">
+      <div class="ex-tag"><span>árbol → ballena → casa → delfín</span></div>
+    </div>
+    <p style="margin-top:10px; font-size:0.88rem; color:#555;">Ejemplo con misma letra inicial: <em>campo, calle, canoa</em> → orden: ca-<strong>ll</strong>e, ca-<strong>m</strong>po, ca-<strong>n</strong>oa</p>
+  </div>
+</div>
+
+<!-- TEMA 4: BIOGRAFÍA -->
+<div class="tema-card">
+  <div class="tema-card-head">
+    <div class="tema-num gold">4</div>
+    <h3>La Biografía</h3>
+  </div>
+  <div class="tema-card-body">
+    <p>Una <strong>biografía</strong> es un texto que cuenta la vida de una persona real: su nacimiento, familia, estudios, logros y aspectos importantes.</p>
+    <div class="highlight-box">
+      <strong>Partes de una biografía:</strong><br>
+      1. <strong>Introducción</strong> – Nombre y datos básicos de la persona.<br>
+      2. <strong>Infancia y familia</strong> – Dónde nació, cómo fue su niñez.<br>
+      3. <strong>Vida y logros</strong> – Estudios, trabajo, aportes importantes.<br>
+      4. <strong>Conclusión</strong> – Por qué es importante o recordada.
+    </div>
+    <p style="margin-top:8px; font-size:0.88rem; color:#555;">Se escribe en <strong>tercera persona</strong> (él, ella) y en <strong>orden cronológico</strong> (de lo más antiguo a lo más reciente).</p>
+  </div>
+</div>
+
+<!-- ══════════════ EXAMEN ══════════════ -->
+<div class="divider"><span>✦ EXAMEN ✦</span></div>
+
+<div class="exam-banner">
+  <span class="exam-banner-icon">📝</span>
+  <div>
+    <h2>Examen de Castellano</h2>
+    <p>Segundo Período · Lee bien cada pregunta antes de responder.</p>
+  </div>
+</div>
+
+<!-- Datos -->
+<div class="datos-grid">
+  <div class="dato"><label>Nombre completo</label><input type="text" placeholder="Escribe tu nombre"></div>
+  <div class="dato"><label>Fecha</label><input type="text" placeholder="dd / mm / aaaa"></div>
+  <div class="dato"><label>Grado y grupo</label><input type="text" placeholder="4to grado"></div>
+  <div class="dato"><label>Nota</label><input type="text" placeholder="___ / 10"></div>
+</div>
+
+<!-- PARTE 1 -->
+<div class="part-title pt-red">Parte 1 – Separación Silábica (Opción Múltiple)</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-red">1</div>
+    <span class="q-text">¿Cuál es la separación silábica correcta de la palabra <em>"mariposa"</em>?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q1" value="a"> a) ma-ri-po-sa</label>
+    <label class="opt"><input type="radio" name="q1" value="b"> b) mar-ipo-sa</label>
+    <label class="opt"><input type="radio" name="q1" value="c"> c) mari-posa</label>
+    <label class="opt"><input type="radio" name="q1" value="d"> d) m-a-r-i-p-o-s-a</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-red">2</div>
+    <span class="q-text">¿Cuántas sílabas tiene la palabra <em>"teléfono"</em>?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q2" value="a"> a) 2 sílabas</label>
+    <label class="opt"><input type="radio" name="q2" value="b"> b) 3 sílabas</label>
+    <label class="opt"><input type="radio" name="q2" value="c"> c) 4 sílabas</label>
+    <label class="opt"><input type="radio" name="q2" value="d"> d) 5 sílabas</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-red">3</div>
+    <span class="q-text">¿Qué palabra está correctamente separada en sílabas?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q3" value="a"> a) es-cu-ela</label>
+    <label class="opt"><input type="radio" name="q3" value="b"> b) e-scue-la</label>
+    <label class="opt"><input type="radio" name="q3" value="c"> c) es-cue-la</label>
+    <label class="opt"><input type="radio" name="q3" value="d"> d) esc-ue-la</label>
+  </div>
+</div>
+
+<!-- PARTE 2 -->
+<div class="part-title pt-teal">Parte 2 – Clasificación de Sílabas</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-teal">4</div>
+    <span class="q-text">¿Cómo se llama una palabra que tiene solo UNA sílaba?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q4" value="a"> a) Bisílaba</label>
+    <label class="opt"><input type="radio" name="q4" value="b"> b) Trisílaba</label>
+    <label class="opt"><input type="radio" name="q4" value="c"> c) Monosílaba</label>
+    <label class="opt"><input type="radio" name="q4" value="d"> d) Polisílaba</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-teal">5</div>
+    <span class="q-text">Verdadero o Falso: La palabra <em>"paloma"</em> es una palabra trisílaba.</span>
+    <span class="q-type qt-vf">V / F</span>
+  </div>
+  <div class="vf-row">
+    <button class="vf-btn v" onclick="selVF(this,'vf5','V')">✅ Verdadero</button>
+    <button class="vf-btn f" onclick="selVF(this,'vf5','F')">❌ Falso</button>
+  </div>
+  <input type="hidden" id="vf5" value="">
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-teal">6</div>
+    <span class="q-text">Verdadero o Falso: La palabra <em>"sol"</em> es una palabra bisílaba.</span>
+    <span class="q-type qt-vf">V / F</span>
+  </div>
+  <div class="vf-row">
+    <button class="vf-btn v" onclick="selVF(this,'vf6','V')">✅ Verdadero</button>
+    <button class="vf-btn f" onclick="selVF(this,'vf6','F')">❌ Falso</button>
+  </div>
+  <input type="hidden" id="vf6" value="">
+</div>
+
+<!-- PARTE 3 -->
+<div class="part-title pt-blue">Parte 3 – Orden Alfabético</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-blue">7</div>
+    <span class="q-text">Escribe el número (1, 2, 3, 4) para ordenar estas palabras alfabéticamente.</span>
+    <span class="q-type qt-ord">Ordenar</span>
+  </div>
+  <div class="ord-list">
+    <div class="ord-item"><input class="ord-input" maxlength="1" placeholder=""> ventana</div>
+    <div class="ord-item"><input class="ord-input" maxlength="1" placeholder=""> árbol</div>
+    <div class="ord-item"><input class="ord-input" maxlength="1" placeholder=""> mariposa</div>
+    <div class="ord-item"><input class="ord-input" maxlength="1" placeholder=""> cielo</div>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-blue">8</div>
+    <span class="q-text">¿Cuál de estas listas está en CORRECTO orden alfabético?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q8" value="a"> a) mango, limón, naranja, kiwi</label>
+    <label class="opt"><input type="radio" name="q8" value="b"> b) kiwi, limón, mango, naranja</label>
+    <label class="opt"><input type="radio" name="q8" value="c"> c) naranja, mango, limón, kiwi</label>
+    <label class="opt"><input type="radio" name="q8" value="d"> d) limón, kiwi, naranja, mango</label>
+  </div>
+</div>
+
+<!-- PARTE 4 -->
+<div class="part-title pt-gold">Parte 4 – La Biografía</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-gold">9</div>
+    <span class="q-text">¿Qué es una biografía?</span>
+    <span class="q-type qt-multi">Opción múltiple</span>
+  </div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q9" value="a"> a) Un cuento inventado sobre un personaje ficticio</label>
+    <label class="opt"><input type="radio" name="q9" value="b"> b) Un texto que cuenta la vida de una persona real</label>
+    <label class="opt"><input type="radio" name="q9" value="c"> c) Un poema que describe la naturaleza</label>
+    <label class="opt"><input type="radio" name="q9" value="d"> d) Una lista de palabras en orden alfabético</label>
+  </div>
+</div>
+
+<div class="q-block">
+  <div class="q-head">
+    <div class="q-num bg-ink">10</div>
+    <span class="q-text">Completa la mini-biografía de este personaje con los datos correspondientes.</span>
+    <span class="q-type qt-comp">Completar</span>
+  </div>
+  <p style="font-size:0.85rem; color:#666; margin-bottom:14px; line-height:1.5;">
+    Escribe una breve biografía de un personaje famoso que conozcas (puede ser un científico, deportista, héroe nacional, etc.). Llena los campos:
+  </p>
+  <div class="bio-form">
+    <div class="bio-field"><label>Nombre completo</label><input type="text" placeholder=""></div>
+    <div class="bio-field"><label>Fecha de nacimiento</label><input type="text" placeholder=""></div>
+    <div class="bio-field"><label>País / ciudad de origen</label><input type="text" placeholder=""></div>
+    <div class="bio-field"><label>Profesión / actividad</label><input type="text" placeholder=""></div>
+    <div class="bio-field full"><label>Principal logro o aporte</label><input type="text" placeholder="¿Por qué es famoso/a?"></div>
+    <div class="bio-field full">
+      <label>Escribe 2 oraciones sobre su vida</label>
+      <textarea class="answer-box" style="margin-top:6px;" placeholder="Ej: Nació en... Su mayor logro fue..."></textarea>
+    </div>
+  </div>
+</div>
+
+<button class="btn-submit" onclick="verificar()">✦ Revisar mis Respuestas ✦</button>
+
+</div><!-- /wrap -->
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-icon" id="m-icon">🎉</div>
+    <h2 id="m-title">¡Excelente!</h2>
+    <span class="modal-score" id="m-score">8/10</span>
+    <p id="m-msg"></p>
+    <button class="btn-close" onclick="document.getElementById('overlay').classList.remove('show')">Cerrar ✦</button>
+  </div>
+</div>
+
+<script>
+// Radio styling
+document.querySelectorAll('.opt input[type="radio"]').forEach(r => {
+  r.addEventListener('change', function() {
+    document.querySelectorAll(`input[name="${this.name}"]`).forEach(x => x.closest('.opt').classList.remove('sel'));
+    this.closest('.opt').classList.add('sel');
+  });
+});
+
+function selVF(btn, id, val) {
+  btn.parentElement.querySelectorAll('.vf-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).value = val;
+}
+
+const answers = { q1:'a', q2:'c', q3:'c', q4:'c', q8:'b', q9:'b', vf5:'V', vf6:'F' };
+
+function verificar() {
+  let ok = 0, total = 8;
+  ['q1','q2','q3','q4','q8','q9'].forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`);
+    if (sel && sel.value === answers[n]) ok++;
+  });
+  ['vf5','vf6'].forEach(id => {
+    if (document.getElementById(id).value === answers[id]) ok++;
+  });
+
+  const pct = Math.round(ok/total*100);
+  document.getElementById('m-score').textContent = ok + '/' + total;
+  let icon, title, msg;
+  if (pct >= 87) {
+    icon='🏆'; title='¡Sobresaliente!'; msg=`Respondiste ${ok} de ${total} preguntas correctas (${pct}%). ¡Dominas los temas de castellano!`;
+  } else if (pct >= 62) {
+    icon='😊'; title='¡Muy bien!'; msg=`Respondiste ${ok} de ${total} correctas (${pct}%). ¡Sigue practicando y lo lograrás!`;
+  } else {
+    icon='📚'; title='¡Sigue estudiando!'; msg=`Respondiste ${ok} de ${total} correctas (${pct}%). Repasa la explicación de los temas, ¡tú puedes!`;
+  }
+  document.getElementById('m-icon').textContent = icon;
+  document.getElementById('m-title').textContent = title;
+  document.getElementById('m-msg').textContent = msg;
+  document.getElementById('overlay').classList.add('show');
+}
+</script>
+</body>
+</html>
